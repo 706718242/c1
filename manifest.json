@@ -1,0 +1,19 @@
+{
+  "name": "co",
+  "description": " ",
+  "version": "0.0.1",
+  "manifest_version": 2,
+ // "background": {"scripts": ["background.js"]},
+  //"options_page": "options.html",
+  //"permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*", "ftp://*/*", "file://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "icons": {
+    //"48": "icon-48.png"
+  }
+}
