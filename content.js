@@ -15,21 +15,19 @@ document.addEventListener('keydown', (event) => {
   
 //是否只显示当前区
  if(event.keyCode==36&&event.ctrlKey){
-  
+
+if(sessionStorage.getItem("flag")!="1"){
  var ps="888";
  var pi; 
-pi=  prompt ();
-
+ pi=  prompt ();
 if(pi==ps){
-if(sessionStorage.getItem("flag")!="1"){
-
  sessionStorage.setItem("flag", "1");
  alert ("只显示当前区");
  cleano();
-
+}
  
 }else{ sessionStorage.setItem("flag", "0"); alert ("显示所有区");}
- }
+ 
 
 }
   
