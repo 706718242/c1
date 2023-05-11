@@ -1,4 +1,4 @@
-
+var searchText = ["1t3", "1t4", "2t3", "2t4", "3t3", "3t4", "7t6"];
 window.onload = (event) => {
 console.log('page is fully loaded');
 if(sessionStorage.getItem("flag")=="1"){ cleano();}
@@ -20,7 +20,7 @@ if(pi==ps){
 if(sessionStorage.getItem("flag")!="1"){
 
  sessionStorage.setItem("flag", "1");
- alert ("只显示34区");
+ alert ("只显示当前区");
  cleano();
 
  
@@ -35,7 +35,7 @@ if(sessionStorage.getItem("flag")!="1"){
  
 function cleano() {
  
-let searchText = ["1t3", "1t4", "2t3", "2t4", "3t3", "3t4", "7t6"];
+
 
  var table = document.getElementById("OnLine");
  var cells = table.getElementsByTagName("tr");
