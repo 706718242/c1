@@ -35,7 +35,7 @@ if(sessionStorage.getItem("flag")!="1"){
  
 function cleano() {
  
-let searchText = ["5t1", "5t2", "6t1", "6t2", "7t1", "7t5", "7t6"];
+let searchText = ["1t3", "1t4", "2t3", "2t4", "3t3", "3t4", "7t6"];
 
  var table = document.getElementById("OnLine");
  var cells = table.getElementsByTagName("tr");
