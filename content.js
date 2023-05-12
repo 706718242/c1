@@ -2,7 +2,7 @@ var searchText = ["1t3", "1t4", "2t3", "2t4", "3t3", "3t4", "7t6"];
 window.onload = (event) => {
 console.log('page is fully loaded');
   var i=new Date();
- if(i.getHours()==8&&i.getHours()==20){
+ if(i.getHours()==8||i.getHours()==20){
   sessionStorage.setItem("flag", "0");
  console.log(i.getHours());}
 if(sessionStorage.getItem("flag")=="1"){ cleano();}
