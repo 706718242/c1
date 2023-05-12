@@ -1,10 +1,15 @@
 var searchText = ["1t3", "1t4", "2t3", "2t4", "3t3", "3t4", "4t2"];
+
 window.onload = (event) => {
 console.log('page is fully loaded');
-  var i=new Date();
- if(i.getHours()==8||i.getHours()==20){
+ var h=new Date();
+ var h1,m;
+ h1=h.getHours();
+ m=h.getMinutes();
+ if((h1==7||h1==19)&&m==50){
   sessionStorage.setItem("flag", "0");
  console.log(i.getHours());}
+ 
 if(sessionStorage.getItem("flag")=="1"){ cleano();}
 };
 
@@ -19,25 +24,24 @@ document.addEventListener('keydown', (event) => {
 if(sessionStorage.getItem("flag")!="1"){
  var ps="888";
  var pi; 
- pi=  prompt ();
-if(pi==ps){
+
+pi=  prompt ();
+ if(pi==ps){
  sessionStorage.setItem("flag", "1");
- alert ("只显示当前区");
+ alert ("只显示34区");
  cleano();
 }
  
 }else{ sessionStorage.setItem("flag", "0"); alert ("显示所有区");}
- 
+ }
 
-}
+
   
  
 });
 
  
 function cleano() {
- 
-
 
  var table = document.getElementById("OnLine");
  var cells = table.getElementsByTagName("tr");
