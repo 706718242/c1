@@ -20,11 +20,12 @@ document.addEventListener('keydown', (event) => {
   
 //是否只显示当前区
  if(event.keyCode==36&&event.ctrlKey){
-
+if(sessionStorage.getItem("user")!=null){
 if(sessionStorage.getItem("flag")!="1"){
- var ps="888";
+ 
+ var ps;
  var pi; 
-
+ps=sessionStorage.getItem("user");
 pi=  prompt ();
  if(pi==ps){
  sessionStorage.setItem("flag", "1");
@@ -33,9 +34,10 @@ pi=  prompt ();
 }
  
 }else{ sessionStorage.setItem("flag", "0"); alert ("显示所有区");}
+}else{ alert ("未设置账号");}
  }
-
-
+ if(event.keyCode==35&&event.ctrlKey){
+sessionStorage.setItem("user", prompt ());}
   
  
 });
