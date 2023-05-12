@@ -1,0 +1,926 @@
+if(window.location.href=="http://172.30.11.197:8092/SMTMaterialConsumption?Project=Cisco&LineName=C23B") 
+{
+ 
+// 创建样式元素
+const style = document.createElement("style");
+style.textContent = `
+ 
+  .button {
+    background: transparent;
+    color: #aaa;
+    font-size: 16px;
+    font-weight: bold;
+    width: 28px;
+    height: 28px;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    opacity: 0.5;
+    transition: opacity 0.2s ease-in-out;
+    
+  }
+
+  
+`;
+var head = document.getElementsByTagName('head')[0];
+
+  
+var input = document.getElementById("keyv"); // 获取输入框元素
+
+
+function ipl() {
+
+box = document.createElement('div');
+
+  box.id = 'inputid';
+  document.documentElement.appendChild(box);
+  box.innerHTML = 
+        '&nbsp'+" Find: "+
+       ' <input id="keyv" type="text" value="" size="18" readonly><button id="close-button" class="button">X</button>'+'<h id="Fv"></h>'
+      ;
+  //box.style.border= "2px solid red";
+ // box.style.padding= "10px";
+ // box.style.borderradius= "25px";
+ 
+  box.style.position= "fixed";
+  box.style.zIndex = "9999";
+  box.style.top = "0px";
+  box.style.left = "00px";
+  //box.style.right= "00px";
+  box.style.width= "100%";
+box.style.height= "28px";
+  //box.style.border= 3px solid #73AD21;
+  
+ // box.style['top'] = '';
+  box.style.display = 'none';
+  box.style.fontSize = '16px';
+
+//box.style['background-color'] = "#fff";
+  box.style.backgroundColor = "#F7F7F7";
+  // document.getElementById(box.id).style.color = "white";
+ document.getElementById(box.id).style.color = "block";
+
+//var i; i=document.getElementsByClassName("container-fluid"); i[0].querySelector ('div').style.marginTop = "28px";
+ //var i; i=document.getElementsByTagName("body"); i[0].querySelector ('div').style.marginTop = "28px";
+
+ var closeButton = document.getElementById("close-button");
+closeButton.addEventListener("click", function() {
+      console.log('clk'); 
+ box.style.display = "none";
+ var i; i=document.getElementsByClassName("container-fluid"); i[0].querySelector ('div').style.marginTop = "";
+ var i; i=document.getElementsByTagName("body"); i[0].querySelector ('div').style.marginTop = "";
+    });
+ 
+ /*
+
+
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+   <div style="background-color:white; hight:120px">
+        Find: 
+        <input id="keyv" type="text" value="" size="12">
+      </div>         <div class="row">
+
+previous
+ Next
+ */
+ 
+}
+ var ic=[];
+ var keyC=[];
+ var tout=0;
+ var search=0,slot=0;;
+ var tid,tid1;
+ var tdata=[];
+
+window.onload = (event) => {
+console.log('page is fully loaded');
+ 
+if(sessionStorage.getItem("flag")=="1"){
+
+ cleano();}
+ //block();
+ // 将样式元素添加到<head>标签中
+document.head.appendChild(style);
+ ipl();
+ 
+ // input.value = "123"; 
+ //g();
+//
+
+
+
+
+  var table = document.getElementById("OnMachine");
+
+  var cells = table.getElementsByTagName("td");
+ 
+  for (var i = 0; i < cells.length; i++) {
+   tdata[i] = cells[i].innerText.toLowerCase(); // 将单元格文本转换为小写字母
+
+  
+ }
+
+
+ 
+};
+
+
+ 
+ 
+ 
+ 
+function clean() {
+ 
+  var table = document.getElementById("OnMachine");
+  var cells = table.getElementsByTagName("td");
+  for (var i = 0; i < ic.length; i++) {
+ //恢复表格背景 搜索结果背景与字体颜色
+  cells[ic[i]].style.backgroundColor = "";
+  cells[ic[i]].innerHTML = cells[ic[i]].innerText;
+  //cells[ic[i]].querySelector ('h').style.backgroundColor = "";
+  //cells[ic[i]].querySelector ('h').style.color = "#337ab7";
+   
+ }
+ 
+  console.log("cleanSearch");
+  slot=0;
+  ic.length=0;
+  search=0;
+ 
+ //document.getElementById(box.id).innerHTML = "";
+ 
+}
+
+function tclean() {
+ keyC.length = 0;
+
+ console.log("cleanflag");
+ keyv.value = "";
+box.style.display = "none";
+ var i; i=document.getElementsByClassName("container-fluid"); i[0].querySelector ('div').style.marginTop = "";
+ var i; i=document.getElementsByTagName("body"); i[0].querySelector ('div').style.marginTop = "";
+  
+}
+
+
+//var tmp=[];
+
+ document.addEventListener('keydown', (event) => {
+   if (event.ctrlKey ) {
+    // 阻止默认的搜索操作
+    if(event.keyCode == '70')
+    event.preventDefault();
+     box.style.display = '';
+     var i; i=document.getElementsByClassName("container-fluid"); i[0].querySelector ('div').style.marginTop = "28px";
+ var i; i=document.getElementsByTagName("body"); i[0].querySelector ('div').style.marginTop = "28px";
+
+  }else{
+    box.style.display = '';
+    var i; i=document.getElementsByClassName("container-fluid"); i[0].querySelector ('div').style.marginTop = "28px";
+ var i; i=document.getElementsByTagName("body"); i[0].querySelector ('div').style.marginTop = "28px";
+ console.log(event.key);
+ console.log(event.keyCode);
+ console.log(keyC);
+
+ clearTimeout(tid);
+ clearTimeout(tid1);
+  
+ tid=setTimeout(function() {'' 
+  tclean();
+      },60 * 1000);
+//sessionStorage.getItem("flag")=="1"||
+  search=3;
+if(search==3 ){
+  
+  if (event.key=="Backspace"||event.keyCode!=36&&event.keyCode!=32&&event.keyCode>47&&event.keyCode<58||event.keyCode=="189"||event.keyCode>"64"&&event.keyCode<"91") { 
+  
+     if(event.key=="Backspace"){
+   if(search==1){clean();}
+   keyC.pop();
+  // box.innerHTML = keyC.join('');
+
+ 
+
+  }
+   
+   clean();
+   if(event.key!="Backspace"){ 
+    keyC.push(event.key);
+   }
+  if(event.keyCode==80){ 
+    keyC.pop();
+  }
+  
+    console.log(keyC);
+    
+  
+    //document.getEl  keyC= String.fromCharCode(event.keyCode);ementById(box.id).style.display = 'block';
+   //document.getElementById(box.id).style.color = "blue";
+  // keyC= String.fromCharCode(keyC);
+   
+     keyv.value = keyC.join('');
+
+
+   if(search==2){
+  var itl=document.getElementById(inputtl);
+     console.log(itl);
+   if (itl!="") {
+    sessionStorage.setItem("tl", itl);
+   }
+    search=0;
+   }
+ 
+  if(keyC.length>1&&search==0){
+  clean() ;
+  if(keyC[0]=="t"&&keyC[1]=="l") { console.log(keyC);document.getElementById("OnLine").innerHTML ='<input id="inputtl" type="text" value="" size="5" />' ;search=2;}
+  else { search=1;    //完成搜索标记
+                                                                                                                                                                         }
+    var table = document.getElementById("OnMachine");
+
+  var cells = table.getElementsByTagName("td");
+
+  var searchText = keyC.join('').toLowerCase(); // 将搜索文本转换为小写字母
+ var si=0;
+   ic.length=0;
+  for (var i = 0; i < tdata.length; i++) {
+  si++;
+   
+   if (tdata[i].indexOf(searchText) !== -1) {
+   ic.push(i);
+  // tmp[i]=cells[i].innerHTML;
+//if(frist==0){ 
+ //frist=1;cells[i].scrollIntoView({ block: "center" });
+   //console.log("i");   
+  //有两种方法 1.每次搜索完成写入<h> 2.加载页面完成后全部写入<h>
+//  cells[i].innerHTML ='<h>'+ cells[i].innerText+'</h>' ;//增加<h>以便设置搜索结果样式
+ // cells[i].style.backgroundColor = "#ffebb5";//浅黄
+    //cells[i].style.backgroundColor = "#fffff0";//浅黄
+   
+
+   }
+if(si==3){si=0; i=i+4;}
+  
+ }
+
+}
+   
+ if(ic.length!=0){
+ cells[ic[slot]].innerHTML ='<h>'+ cells[ic[slot]].innerText+'</h>' ;//增加<h>以便设置搜索结果样式
+// cells[ic[slot]].querySelector ('h').style.backgroundColor = "";
+  cells[ic[slot]].querySelector ('h').style.color = "#337ab7";
+  tid1=setTimeout(function() {''
+      clean();
+    },60 * 1000);
+   
+  console.log(search);
+  console.log(slot);
+  console.log(ic.length);
+
+
+  var table = document.getElementById("OnMachine");
+ 
+  var cells = table.getElementsByTagName("td");
+
+   if(slot>0){
+    //将上一个标记清除
+  
+  cells[ic[slot-1]].querySelector ('h').style.backgroundColor = "";
+  cells[ic[slot-1]].querySelector ('h').style.color = "#337ab7";//浅蓝
+   //cells[ic[slot-1]].style.backgroundColor = ""; 
+  // cells[ic[slot-1]].style.textDecoration = "none";
+  }else{ 
+  //cells[ic[slot]].querySelector ('h').style.backgroundColor = "";
+  //cells[ic[slot]].querySelector ('h').style.color = "#337ab7";
+    //cells[ic[slot]].style.backgroundColor = "";
+   //cells[ic[slot]].style.textDecoration = "none";
+   }
+
+  if(slot==ic.length){    
+     slot=0;  } 
+  cells[ic[slot]].querySelector ('h').style.backgroundColor = "#1E90FF";//搜索结果背景
+  cells[ic[slot]].querySelector ('h').style.color = "white";//搜索结果字体颜色
+  cells[ic[slot]].scrollIntoView({ block: "center" });
+  //cells[ic[slot]].style.fontSize= "12px";
+  //cells[ic[slot]].style.color = "black";
+  //cells[ic[slot]].style.fontWeight = "bold";
+  //cells[ic[slot]].style.textDecoration = "underline";
+if(ic.length>0)   document.getElementById("Fv").innerHTML=(slot+1)+'/'+ic.length;
+
+  slot++; 
+  
+
+   
+ }
+    else{  document.getElementById("Fv").innerHTML="None";  }
+}
+if(event.key=="Enter"){
+ if(ic.length!=0){
+ 
+
+  tid1=setTimeout(function() {''
+      clean();
+    },60 * 1000);
+   
+  console.log(search);
+  console.log(slot);
+  console.log(ic.length);
+
+
+ // var table = ;
+ 
+  var cells = document.getElementById("OnMachine").getElementsByTagName("td");
+
+   if(slot>0){
+    //将上一个标记清除
+ 
+  cells[ic[slot-1]].innerHTML=cells[ic[slot-1]].innerText;
+ // cells[ic[slot-1]].querySelector ('h').style.color = "#337ab7";//浅蓝
+   //cells[ic[slot-1]].style.backgroundColor = ""; 
+  // cells[ic[slot-1]].style.textDecoration = "none";
+  }else{ 
+  //cells[ic[slot]].querySelector ('h').style.backgroundColor = "";
+  //cells[ic[slot]].querySelector ('h').style.color = "#337ab7";
+    //cells[ic[slot]].style.backgroundColor = "";
+   //cells[ic[slot]].style.textDecoration = "none";
+   }
+
+  if(slot==ic.length){    
+     slot=0;  } 
+   cells[ic[slot]].innerHTML ='<h>'+ cells[ic[slot]].innerText+'</h>' ;//增加<h>以便设置搜索结果样式
+  cells[ic[slot]].querySelector ('h').style.backgroundColor = "#1E90FF";//搜索结果背景
+  cells[ic[slot]].querySelector ('h').style.color = "white";//搜索结果字体颜色
+  cells[ic[slot]].scrollIntoView({ block: "center" });
+  //cells[ic[slot]].style.fontSize= "12px";
+  //cells[ic[slot]].style.color = "black";
+  //cells[ic[slot]].style.fontWeight = "bold";
+  //cells[ic[slot]].style.textDecoration = "underline";
+if(ic.length>0)   document.getElementById("Fv").innerHTML=(slot+1)+'/'+ic.length;
+
+  slot++; 
+  
+
+   
+ }
+ }
+
+ }
+
+
+
+  
+//是否只显示当前区
+ if(event.keyCode==36){
+if(sessionStorage.getItem("flag")!="1"){
+ sessionStorage.setItem("flag", "1");
+ alert ("只显示34区");
+ cleano();
+}else{ sessionStorage.setItem("flag", "0"); alert ("显示所有区");}
+
+
+search=3;
+
+
+/*
+ var table = document.getElementById("OnMachine");
+ var searchText = "14497".toLowerCase(); // 将搜索文本转换为小写字母
+ var cells = table.getElementsByTagName("td");
+ for (var i = 0; i < cells.length; i++) {
+ var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
+ if (cellText.indexOf(searchText) !== -1) {
+    ic.push(i);
+   
+    document.getElementById(box.id).innerHTML = cells[i].innerHTML+'  '+cells[i+2].innerHTML+'  '+cells[i+3].innerHTML+'  '+cells[i+4].innerHTML+'<br>已完成'+(cells[i+2].innerHTML-cells[i+3].innerHTML)+'  剩余'+cells[i+3].innerHTML;
+    cells[i].style.backgroundColor = "#ffebb5";
+    cells[i].scrollIntoView({ block: "center" });
+   
+  }
+}  
+  */
+
+//console.log(window.location.href);
+}
+  
+
+ if(event.keyCode==32){
+
+g();
+  tid1=setTimeout(function() {''
+      keyv.value = ""; 
+    },60 * 1000);
+  
+}
+
+if(event.keyCode==27){
+  box.style.display = 'none';
+    var i; i=document.getElementsByClassName("container-fluid"); i[0].querySelector ('div').style.marginTop = "";
+ var i; i=document.getElementsByTagName("body"); i[0].querySelector ('div').style.marginTop = "";
+}
+    
+
+   }
+  
+ 
+});
+
+ 
+ 
+function cleano() {
+ 
+let searchText = ["5t1", "5t2", "6t1", "6t2", "7t1", "7t5", "7t6"];
+
+
+ var table = document.getElementById("OnLine");
+ 
+ var cells = table.getElementsByTagName("tr");
+
+
+ for(var j=0;j<searchText.length;j++){
+
+ for (var i = 0; i < cells.length; i++) {
+ var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
+ if (cellText.indexOf(searchText[j].toLowerCase()) !== -1) {// 将搜索文本转换为小写字母
+  
+  document.getElementById("OnLine").deleteRow(i);
+   i--;
+   
+  }
+ }
+}/*
+ var table = document.getElementById("OnMachine");
+ 
+ var cells = table.getElementsByTagName("tr");
+
+
+ for(var j=0;j<searchText.length;j++){
+
+ for (var i = 0; i < cells.length; i++) {
+ var cellText = cells[i].innerHTML.toLowerCase(); // 将单元格文本转换为小写字母
+ if (cellText.indexOf(searchText[j].toLowerCase()) !== -1) {// 将搜索文本转换为小写字母
+  
+  document.getElementById("OnMachine").deleteRow(i);
+   i--;
+   
+  }
+ }
+}*/
+ console.log("co");
+}
+ 
+
+}
+
+
+//perpetual data
+//R/W data
+//localStorage.setItem("myCat", "Tom");
+//const cat = localStorage.getItem("myCat");console.log(cat);
+
+//remove data
+//localStorage.removeItem("myCat");
+//localStorage.clear();
+
+
+//tmp data
+// Save data to sessionStorage
+//sessionStorage.setItem("key", "value");
+
+// Get saved data from sessionStorage
+//let data = sessionStorage.getItem("key");console.log(data);
+
+// Remove saved data from sessionStorage
+//sessionStorage.removeItem("key");
+
+// Remove all saved data from sessionStorage
+//sessionStorage.clear();
+
+
+
+
+//document.getElementById("OnMachine").deleteRow(1);
+//<>37 39
+/* //大到小排序
+ var a =["1","5","2","9","8"];
+ var max = 0; 
+ var d = a.length*a.length;
+ for(var j=0; j<d;j++){
+ for (var i = 1; i < a.length; i++) {
+ if(a[i-1]<a[i]){ d++; max=a[i]; a[i]=a[i-1]; a[i-1]=max;  console.log(a);} //else {}
+
+ } }
+*/
+/* //小到大排序
+ var a =["1","5","2","9","8"];
+ var max = 0; 
+ var d = a.length*a.length;
+ for(var j=0; j<d;j++){
+ for (var i = 1; i < a.length; i++) {
+ if(a[i-1]<a[i]){ d++; max=a[i]; a[i]=a[i-1]; a[i-1]=max;  console.log(a);} //else {}
+
+ } }
+*/
+
+
+
+
+//等待页面加载完成开始执行
+/*window.addEventListener('load', (event) => {
+  console.log('page is fully loaded');
+
+
+document.getElementById("OnLine").deleteRow(1);
+ 
+});
+
+
+window.onload = (event) => {
+  console.log('page is fully loaded');
+};
+*/
+
+
+//document.getElementById("OnMachine").deleteRow(1);
+//<>37 39
+//字符串转整数
+//let myString = parseInt("384.75a");
+//console.log(myString);
+
+
+
+
+/*
+
+
+
+
+  遍历所有高亮元素，移除其高亮样式
+var highlightElements = document.getElementsByClassName("highlight");
+highlightElements.forEach(function(element) {
+  element.style.backgroundColor = "";
+});
+// 或
+for (var i = 0; i < highlightElements.length; i++) {
+  highlightElements[i].style.backgroundColor = "";
+}
+
+通过重置 CSS 类名来移除相应的高亮效果
+
+highlightElements.forEach(function(element) {
+  element.className = "reset-highlight";
+});
+
+
+
+
+//插入表格
+// Find a <table> element with id="myTable":
+var table = document.getElementById("OnLine");
+
+// Create an empty <tr> element and add it to the 1st position of the table:
+var row = table.insertRow(0);
+
+// Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+var cell1 = row.insertCell(0);
+var cell2 = row.insertCell(1);
+var cell3 = row.insertCell(2);
+var cell4 = row.insertCell(3);
+var cell5 = row.insertCell(4);
+// Add some text to the new cells:
+cell1.innerHTML = "NEW CELL1";
+cell2.innerHTML = "NEW CELL2";
+
+
+
+*/
+
+
+
+/*
+
+
+
+const table = document.getElementById("OnMachine");
+//table.rows[2].cells[]; // 获取第四行数据
+
+const cellData = [];                                                  
+for (let i = 0; i < table.rows.length; i++) {console.log(i);
+  cellData.push(table.rows[2].cells[2].innerText);
+}
+console.log(cellData);                                               var a=[];
+ var max = []; 
+ var d = a.length*a.length;
+ for(var j=0; j<d;j++){
+ for (var i = 1; i < a.length; i++) {
+ if(a[i-1]<a[i]){ d++; max=a[i]; a[i]=a[i-1]; a[i-1]=max;  console.log(a);} //else {}
+
+ } }                                                                
+                                                         
+for (let i = 0; i < table.rows.length; i++) {console.log(i);
+  table.rows[2].cells[2].innerHTML='<span id=i>'+cellData[i]+'</span>';
+console.log( table.rows[2].cells[2].innerText);      }
+
+
+
+
+// 获取要添加 id 的 span 元素
+var span = document.querySelector('td span');
+
+// 设置 span 元素的 id 属性
+span.id = 'cell-span';
+
+
+//当前时间
+console.log(Date());
+//原本为每输入一次字符全部查找一次
+//从第一个字符搜索到的结果进行查找加速查找速度
+
+
+
+console.time('test');
+for (var i = 0; i < 1000000; i++) {
+  // 在这里运行需要测量时间的程序代码
+}
+console.timeEnd('test');
+
+
+
+插入排序
+function insertionSort(array) {
+  var len = array.length;
+  for (var i = 0; i < len; i++) {
+    var current = array[i];
+    var j = i - 1;
+    while (j >= 0 && array[j] > current) {
+      array[j + 1] = array[j];
+      j--;
+    }
+    array[j + 1] = current;
+  }
+  return array;
+}
+
+
+
+
+var a;
+  a=document.querySelector( "#OnMachine,#td" ).rows[3].cells[1].innerText;
+ 
+console.log(a);
+
+
+
+
+
+
+const table = document.getElementById("OnMachine");            
+let tds = table.getElementsByTagName("td");
+let tdsLength = tds.length;  
+                           
+var a=[]; var b=[];      
+console.time('test');      
+for (let i = 0; i <  tds.length; i++) {
+
+ a[i]=tds[i].innerText;
+    
+}
+
+
+console.log(a);                             
+for (let i = 3; i <  tdsLength;i=i+7 ) {
+
+if(parseInt(a[i])/parseInt(a[i+2])>750){
+console.log(a[i-3]);  //保存位置以此计算已完成的数量
+console.log(parseInt(a[i]));                                               
+console.log(parseInt(a[i+2]));  
+break;
+}
+}
+console.timeEnd('test');
+
+
+alert ();//提示
+confirm ();//确认
+prompt ();//输入
+
+
+
+//得到刷新时间
+
+document.querySelector ('div.col').innerText;
+
+
+
+
+
+
+
+
+const table = document.getElementById("OnMachine");            
+let tds = table.getElementsByTagName("td");
+let tdsLength = tds.length;  
+                           
+var a=[]; var b=[];      
+console.time('test');      
+
+
+                        
+for (let i = 3; i <  tdsLength;i=i+7 ) {
+
+if(parseInt(tds[i].innerText)/parseInt(tds[i+2].innerText)>750){
+console.log(tds[i-3].innerText);  //保存位置以此计算已完成的数量
+console.log(parseInt(tds[i].innerText));                                               
+console.log(parseInt(tds[i+2].innerText));  
+break;
+}
+}
+console.timeEnd('test');
+
+
+
+数量-剩余/用量
+统计结果一样的
+
+
+对一样的进行标记
+下一个计算时跳过此标记
+
+
+判断第一个是否为空 为空则从缓冲中搜索第一个匹配字符的都转移到新缓冲 第二个字符从新缓冲开始搜索
+
+
+*/
+/*
+
+
+function g() {
+ 
+  console.log('co is fully loaded');
+ 
+setTimeout(function() {
+const table = document.getElementById("OnMachine");
+const a = []; 
+const b = []; 
+const c = []; 
+const table1 = [];
+ const Qty1= []; 
+const 位置=0,Qty=3,剩余=4,Usage=5;
+ //行范围-3_+3 使用二维数组时不用计算范围
+ //设计预计算功能 网页刷新时间为5min 根据计算的消耗速度进行预计算 提高刷新率同时不增加服务器负担
+ //刷新后预计算的数量恢复为实际数量，再次进行预计算
+ //table.rows[3].cells[2].innerText=123;
+ //直接数量除用量得出最大的量 使用这个量计算已完成的数量
+for (let row = 1; row < table.rows.length; row++) {
+ //获取数量
+  a[row]=parseInt(table.rows[row].cells[Qty].innerText);
+ 
+}
+ for (let row = 1; row < table.rows.length; row++) {
+ //获取数量
+  b[row]=parseInt(table.rows[row].cells[Usage].innerText);
+ 
+}
+ var tabl = document.getElementById("OnLine");
+ 
+for (let i = 1; i < table.rows.length; i++) {
+ //获取用量
+  b[i]=parseInt(table.rows[i].cells[Usage].innerText);
+ //如果发现一样的
+ if(table.rows[i-1].cells[位置].innerText==table.rows[i].cells[位置].innerText){
+ console.log("f");  
+  console.log(i);  
+  console.log(a[i-1]); 
+  console.log(a[i]); 
+ a[i]=a[i-1]+a[i];
+  a[i-1]=a[i];
+console.log(a[i]);  
+  }
+ console.log(a[i]); 
+ console.log(b[i]); 
+ //数量除用量等可完成量
+if((a[i]/b[i])<200){ 
+ console.log(a[i]/b[i]);  
+//数量不够的添加到表格
+ 
+
+ tabl.insertRow(-1).insertCell(位置).innerText=table.rows[i].cells[Slot].innerText;
+
+ c[i]=i;
+
+
+ 
+}else{ 
+//计算已完成的数量 
+Qty1[0]  = (parseInt(table.rows[i].cells[Qty].innerText)-parseInt(table.rows[i].cells[剩余].innerText))/parseInt(table.rows[i].cells[Usage].innerText);   }
+ 
+}
+for (let i = 1; i < table.rows.length; i++) {
+ 
+  table1[i]=table.rows[i].innerText;
+}
+
+console.log(a);   
+console.log(b);  
+console.log(c);   
+
+
+
+
+
+         
+let tds = table.getElementsByTagName("td");
+let tdsLength = tds.length;  
+                           
+//var a=[]; var b=[];      
+console.time('test');      
+
+var q,bl,u;
+console.log("开始v计算");  
+                        
+for (let i = 3; i <  tdsLength;i=i+7 ) {
+
+//if(parseInt(tds[i].innerText)/parseInt(tds[i+2].innerText)>750){
+//console.log(tds[i-3].innerText);  //保存位置以此计算已完成的数量
+q=parseInt(tds[i].innerText);                                               
+bl=parseInt(tds[i+1].innerText);                                     
+ u=parseInt(tds[i+2].innerText);   
+ console.log(q);   
+console.log(bl);  
+console.log(u); 
+ console.log("已完成"+((q-bl)/u));       
+//break;
+//}
+}
+console.timeEnd('test');
+
+
+
+ /*
+ 
+   box.innerHTML = "已完成"+((q-bl)/u);
+   tid1=setTimeout(function() {''
+      box.innerHTML = "";
+    },10 * 1000);
+ */
+
+ 
+ //tabl.insertRow(-1).insertCell(位置).innerText="已完成"+Qty1[0];
+ 
+// document.getElementById("tboxid").innerHTML ='<input id="color_link" type="text" value="" size="5" />' ;
+// console.log(document.getElementById("color_link").value);  
+ 
+/*
+ //大到小排序  20.760009765625ms
+ //小到大12.301025390625 ms
+ var max = []; 
+ var d = a.length*a.length;
+
+ var tsw=[];
+console.time('test');
+ for(var j=0; j<d;j++){
+ for (var i = 1; i < a.length; i++) {
+ if(a[i-1]<a[i]){ d++; max=a[i]; a[i]=a[i-1]; a[i-1]=max; 
+                
+                
+                
+                
+                
+                
+                } 
+
+ } }   console.log(a);      
+
+console.timeEnd('test');     
+
+  console.time('test');
+console.log(insertionSort(a));  
+
+ console.timeEnd('test');  
+  
+//插入排序 3.61474609375 ms
+function insertionSort(array) {
+  var len = array.length;
+  for (var i = 0; i < len; i++) {
+    var current = array[i];
+    var j = i - 1;
+    while (j >= 0 && array[j] > current) {
+      array[j + 1] = array[j];
+      j--;
+    }
+    array[j + 1] = current;
+  }
+  return array;
+}*/
+  /*                                                      
+for (let i = 0; i < table.rows.length; i++) {
+  table.rows[i].cells[3].innerHTML='<span id=i>'+a[i]+'</span>';
+console.log( table.rows[i].cells[3].innerText);      }
+
+*/ /*
+
+
+}, 100); 
+
+
+};
+*/
