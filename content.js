@@ -1,4 +1,4 @@
-var searchText = ["1t3", "1t4", "2t3", "2t4", "3t3", "3t4", "7t6"];
+var searchText = ["1t3", "1t4", "2t3", "2t4", "3t3", "3t4", "4t2"];
 window.onload = (event) => {
 console.log('page is fully loaded');
   var i=new Date();
