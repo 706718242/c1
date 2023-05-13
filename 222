@@ -1,0 +1,55 @@
+在 JavaScript 中，要将表格插入到某行中，可以使用以下步骤：
+
+1. 首先，确定要将表格插入的行以及要插入的表格数据。
+
+2. 创建一个新的 table 元素并将其插入到文档中。
+
+3. 创建一个 tr 元素（表示表格的一行）并将其插入到 table 元素中的指定位置。
+
+4. 针对每个表格单元格（td），创建一个新的 td 元素并将其插入到 tr 元素中。
+
+下面是一个示例代码，将表格插入到 table 的第三行中：
+
+```html
+<table id="myTable">
+  <tr>
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>5</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>8</td>
+    <td>9</td>
+  </tr>
+</table>
+
+<script>
+    //要插入的行号为2（即第三行）
+    var row_index = 2;
+
+    //要插入的表格数据
+    var data = ["A", "B", "C"];
+
+    //找到要插入行的位置
+    var table = document.getElementById("myTable");
+    var row = table.insertRow(row_index);
+
+    //插入每个单元格
+    for(var i=0; i<data.length; i++){
+        var cell = row.insertCell(i);
+        cell.innerHTML = data[i];
+    }
+</script>
+```
+
+在上面的示例中，我们首先找到表格，并使用 `insertRow()` 方法在表格的第三行插入了一个新的行。
+
+然后，使用 `insertCell()` 方法在新行中添加了单元格，同时使用 `innerHTML` 属性设置了表格中的内容。
+
+运行上面的代码后，将在第三行下方插入一个新的行，包含一个标题为 "A"、一个标题为 "B" 以及一个标题为 "C" 的表格。
