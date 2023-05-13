@@ -53,3 +53,34 @@
 然后，使用 `insertCell()` 方法在新行中添加了单元格，同时使用 `innerHTML` 属性设置了表格中的内容。
 
 运行上面的代码后，将在第三行下方插入一个新的行，包含一个标题为 "A"、一个标题为 "B" 以及一个标题为 "C" 的表格。
+
+
+
+
+ 
+
+1、当设置的失效时间大于等于1天时，我们可以在 expires 属性后面直接输入XX天数
+
+Cookies.set('name', 'value', {
+expires: 7,
+});
+ 
+// => 'value'
+Cookies.get('name');
+Cookies.remove('name');
+　　
+
+2、当设置的失效时间少于一天时：我们需要在当前的时间上加上失效时间。
+
+例如下面是设置cookie的失效时间为15分钟。
+
+ 
+
+
+var millisecond = new Date().getTime();
+var expiresTime = new Date(millisecond + 60 * 1000 * 15);
+ 
+Cookies.set('name', 'value', {
+expires: expiresTime,
+});
+PS：如果expires设置一个过去的时间点，那么这个cookie 会被立即删掉（失效）。
