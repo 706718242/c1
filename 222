@@ -98,3 +98,16 @@ rows[rows.length-1].parentNode.insertBefore(rows[rows.length-1], rows[1]);
 ```
 
 其中，`myTable` 是你的表格的 id，可以根据实际情况进行修改。
+
+
+// 获取要移动的tr节点和目标行的节点
+var trNode = document.getElementById('tr1');var targetNode = document.getElementById('tr2');
+// 将tr节点从原来的位置删除
+trNode.parentNode.removeChild(trNode);
+// 将tr节点插入到目标行前面
+targetNode.parentNode.insertBefore(trNode, targetNode);
+// 或者将tr节点插入到目标行后面
+var nextNode = targetNode.nextSibling;if (nextNode) {
+  targetNode.parentNode.insertBefore(trNode, nextNode);} else {
+  targetNode.parentNode.appendChild(trNode);}```
+上面的代码假设要移动的tr节点的id为"tr1"，目标行的id为"tr2"。如果要移动的节点和目标行都在同一个表格中，那么它们的父节点应该是同一个table节点。如果它们不在同一个表格中，则需要修改代码以获取正确的父节点。
