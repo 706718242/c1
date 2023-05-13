@@ -84,3 +84,17 @@ Cookies.set('name', 'value', {
 expires: expiresTime,
 });
 PS：如果expires设置一个过去的时间点，那么这个cookie 会被立即删掉（失效）。
+您可以使用以下代码实现将表格下移：
+
+```javascript
+var table = document.getElementById("myTable"); // 获取表格
+var rows = table.rows; // 获取所有行
+
+// 将表格下移一行
+table.insertRow(rows.length);
+
+// 将最后一行移到第二行
+rows[rows.length-1].parentNode.insertBefore(rows[rows.length-1], rows[1]);
+```
+
+其中，`myTable` 是你的表格的 id，可以根据实际情况进行修改。
