@@ -97,7 +97,7 @@ if(c!=0){
 // table.insertRow(0);
 
 // 将最后一行移到第二行
-cells[i].parentNode.insertBefore(cells[i], cells[1]);
+table.insertBefore(cells[i], cells[1]);
   cells[1].style.backgroundColor = "red";
     // table.deleteRow(i);
              
