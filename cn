@@ -83,8 +83,8 @@ function cf() {
  for (var i = 1; i < cells.length; i++) {
  cfd[i] = cells[i].getElementsByTagName("td")[0].innerText; 
  cff(cfd[i]);
- if(c>0&&c<0.9){ 
-  
+if(c!=0){
+  if(c<0.9){ 
     
  
 // table.insertRow(0).innnrHTML = cells[i].innnrHTML;
@@ -109,7 +109,8 @@ cells[i].parentNode.insertBefore(cells[i], cells[1]);
       cells[i].style.backgroundColor = "#ffc107";
       
       }
-  if(c==0){cells[i].style.backgroundColor = "";}
+}
+  
  }
  }
 
