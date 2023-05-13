@@ -86,14 +86,19 @@ function cf() {
     cells[i].style.backgroundColor = "red";
                   //找到要插入行的位置
    
-    // table.insertRow(0);
- 
-     //cell[1].innerHTML = cells[i].innerHTML;
-    // table.deleteRow(i);
+
                
                
                }
-  else{cells[i].style.backgroundColor = "#ffc107"; }
+  else{
+       
+     table.insertRow(-1).innerHTML = cells[i].innerHTML;
+ 
+  
+     table.deleteRow(i);
+      cells[i].style.backgroundColor = "#ffc107";
+      
+      }
   if(c==0){cells[i].style.backgroundColor = "";}
  }
  }
