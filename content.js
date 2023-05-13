@@ -1,12 +1,20 @@
 var searchText = ["1t3", "1t4", "2t3", "2t4", "3t3", "3t4", "4t2"];
 
 window.onload = (event) => {
-console.log('page is fully loaded');
+
+
+ 
  var h=new Date();
  var h1,m;
+var millisecond = h.getTime();
+ if(millisecond-sessionStorage.getItem("tf")>72000000){
+   sessionStorage.setItem("flag", "0");
+}
+  sessionStorage.setItem("tf", millisecond);
+ 
  h1=h.getHours();
  m=h.getMinutes();
- if((h1==7||h1==19)&&m>=50){
+ if((h1==7||h1==19)&&m>=40){
   sessionStorage.setItem("flag", "0");
  }
  
@@ -30,7 +38,7 @@ pi=  prompt ();
  if(pi==ps){
  sessionStorage.setItem("flag", "1");
  alert ("只显示34区");
- cleano();
+ co(); cf();
 }
  
 }else{ sessionStorage.setItem("flag", "0"); alert ("显示所有区");}
