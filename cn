@@ -1,0 +1,69 @@
+var searchText = ["1t3", "1t4", "2t3", "2t4", "3t3", "3t4", "4t2"];
+
+window.onload = (event) => {
+ co();
+ cf();
+};
+
+
+function co() {
+
+ var table = document.getElementById("OnLine");
+ var cells = table.getElementsByTagName("tr");
+
+ for(var j=0;j<searchText.length;j++){
+ for (var i = 1; i < cells.length; i++) {
+ var Text = cells[i].getElementsByTagName("td")[0].innerText.toLowerCase(); // 将单元格文本转换为小写字母
+ if (Text.indexOf(searchText[j]) != -1) {// 将搜索文本转换为小写字母
+  
+  document.getElementById("OnLine").deleteRow(i);
+   i--;
+   
+  }
+ }
+ }}
+
+ var cfd=[];
+var a=0,b=0,c=0;
+var t=0;//找到次数
+function cf() {
+
+ var table = document.getElementById("OnLine");
+ var cells = table.getElementsByTagName("tr");
+
+
+ for (var i = 1; i < cells.length; i++) {
+ cfd[i] = cells[i].getElementsByTagName("td")[0].innerText; 
+ cff(cfd[i]);
+ if(c<0.9){  cells[i].style.backgroundColor = "red"; }
+  else{cells[i].style.backgroundColor = ""; }
+ }
+ }
+
+function cff( cfff) {
+ a=0;b=0;c=0;
+ var table = document.getElementById("OnMachine");
+ var cells = table.getElementsByTagName("tr");
+var aa,bb;
+ for (var i = 1; i < cells.length; i++) {
+ var Text = cells[i].getElementsByTagName("td")[0].innerText; 
+ if (Text.indexOf(cfff) != -1) {
+   aa=parseInt(cells[i].getElementsByTagName("td")[3].innerText); 
+   bb=parseInt(cells[i].getElementsByTagName("td")[4].innerText);
+ 
+   a=aa;
+   b=bb;
+    console.log(a);
+   console.log(b);
+   c=b/a;
+  console.log(c);
+
+  //parseInt();
+  }
+
+  
+ }
+
+ 
+ }
+
