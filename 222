@@ -111,3 +111,30 @@ var nextNode = targetNode.nextSibling;if (nextNode) {
   targetNode.parentNode.insertBefore(trNode, nextNode);} else {
   targetNode.parentNode.appendChild(trNode);}```
 上面的代码假设要移动的tr节点的id为"tr1"，目标行的id为"tr2"。如果要移动的节点和目标行都在同一个表格中，那么它们的父节点应该是同一个table节点。如果它们不在同一个表格中，则需要修改代码以获取正确的父节点。
+
+
+
+
+￼使用js发送http请求
+￼可以使用XMLHttpRequest对象或fetch API来发送HTTP请求。
+
+使用XMLHttpRequest对象：
+
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://example.com/api/data', true);
+xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        console.log(xhr.responseText);
+    }
+};
+xhr.send();
+使用fetch API：
+
+fetch('http://example.com/api/data')
+    .then(function(response) {
+        return response.text();
+    })
+    .then(function(data) {
+        console.log(data);
+    });
+注意：使用fetch API需要在浏览器中支持Promise对象。
