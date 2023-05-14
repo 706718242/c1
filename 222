@@ -138,3 +138,17 @@ fetch('http://example.com/api/data')
         console.log(data);
     });
 注意：使用fetch API需要在浏览器中支持Promise对象。
+
+
+// 获取打印机对象
+var printer = window.printer;
+
+// 设置打印机参数
+printer.setPrinterName("Zebra Printer");
+printer.setPageSize("4x6");
+
+// 创建打印指令
+var command = "^XA^FO50,50^A0N,50,50^FDHello World^FS^XZ";
+
+// 发送打印指令
+printer.printRaw(command);
